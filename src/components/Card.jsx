@@ -2,24 +2,28 @@ import { useState } from "react";
 
 const Card = (props) => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const pokeball = "./src/assets/pokeball_small.jpeg";
 
   function toggleFlip() {
     const next = !isFlipped;
     setIsFlipped(next);
   }
 
-  const pokeball = "./src/assets/img/pokeball.png";
-
   const backTemplate = (
-    <div className="card" onClick={toggleFlip}>
-      <img className="card-back" src={pokeball}></img>
+    <div
+      className="rounded border-2 border-solid border-slate-600 w-1/3"
+      onClick={toggleFlip}
+    >
+      <img src={pokeball}></img>
     </div>
   );
 
   const frontSideTemplate = (
-    <div className="card" onClick={toggleFlip}>
+    <div
+      className="rounded border-2 border-solid border-slate-600 flex flex-col justify-center items-center w-1/3 bg-white p-1"
+      onClick={toggleFlip}
+    >
       <img src={props.img} alt={props.name} />
-      <p>{props.name}</p>
     </div>
   );
 

@@ -26,9 +26,13 @@ const App = () => {
   }
 
   return (
-    <div className="outer-container">
-      <h1>Pokemon Time</h1>
-      <div className="container">{arrayShuffle(cardList)}</div>
+    <div className="w-screen h-screen bg-lime-600">
+      <h1 className="text-white bg-red-600 text-center text-4xl font-bold p-2">
+        Pokemon Memory
+      </h1>
+      <div className="rounded border-2 border-white border-solid p-2 w-11/12 mx-auto my-2 flex flex-row flex-wrap">
+        {arrayShuffle(cardList)}
+      </div>
     </div>
   );
 };
