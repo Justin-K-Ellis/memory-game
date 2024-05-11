@@ -3,7 +3,6 @@ import pokeball from "/src/assets/pokeball_small.jpeg";
 
 const Card = (props) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  // const pokeball = "./src/assets/pokeball_small.jpeg";
 
   function toggleFlip() {
     const next = !isFlipped;
