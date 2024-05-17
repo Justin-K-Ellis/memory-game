@@ -125,9 +125,6 @@ const App = () => {
             <Card
               card={card}
               key={card.id}
-              img={card.img}
-              name={card.name}
-              matched={card.matched}
               handleChoice={handleChoice}
               isFlipped={
                 card.id === firstCard?.id ||
