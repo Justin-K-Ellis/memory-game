@@ -40,7 +40,6 @@ const App = () => {
   // Set clicked card and check if cards match
   function handleChoice(clickedCard) {
     firstCard ? setSecondCard(clickedCard) : setFirstCard(clickedCard);
-    // console.log(firstCard, secondCard);
   }
 
   useEffect(() => {
@@ -90,7 +89,6 @@ const App = () => {
       <h1 className="text-white bg-red-600 text-center text-4xl font-bold p-2">
         Pokemon Memory
       </h1>
-      <h2>Turn: {turns}</h2>
       <div className="rounded border-2 border-white border-solid p-2 w-11/12 mx-auto my-2 flex flex-row flex-wrap">
         {finalList.map((card) => {
           return (
@@ -109,6 +107,9 @@ const App = () => {
             />
           );
         })}
+      </div>
+      <div className="rounded border-2 border-white border-solid p-2 w-11/12 mx-auto my-2">
+        <p className="text-white text-center text-3xl">Turn {turns}</p>
       </div>
     </div>
   );
