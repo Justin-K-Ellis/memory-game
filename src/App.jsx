@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import arrayShuffle from "array-shuffle";
 import { nanoid } from "nanoid";
+import * as Tone from "tone";
 
 import ScoreBoard from "./components/ScoreBoard";
 import Card from "./components/Card";
@@ -67,15 +68,18 @@ const App = () => {
             }
           });
         });
+        matchSound();
         resetCardMatching();
         togglePlayer();
       } else {
+        setTimeout(mismatchSound, 250);
         setTimeout(resetCardMatching, 2500);
         setTimeout(togglePlayer, 2500);
       }
     }
   }, [firstCard, secondCard]);
 
+  // Helper functions
   function togglePlayer() {
     currentPlayer === "Player 1"
       ? setCurrentPlayer("Player 2")
@@ -90,6 +94,19 @@ const App = () => {
 
   function randomPokeNumber() {
     return Math.ceil(Math.random() * 151);
+  }
+
+  const synth = new Tone.Synth().toDestination();
+
+  function matchSound() {
+    const now = Tone.now();
+    synth.triggerAttackRelease("G4", 0.5, now);
+    synth.triggerAttackRelease("B4", 0.25, now + 0.25);
+  }
+
+  function mismatchSound() {
+    const now = Tone.now();
+    synth.triggerAttackRelease("C4", 0.1, now);
   }
 
   return (
