@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 import arrayShuffle from "array-shuffle";
 import { nanoid } from "nanoid";
 
+import ScoreBoard from "./components/ScoreBoard";
 import Card from "./components/Card";
 import TurnCounter from "./components/TurnCounter";
+import NewGame from "./components/NewGame";
 
 const URL = "https://pokeapi.co/api/v2/pokemon/";
 
@@ -51,7 +53,6 @@ const App = () => {
   useEffect(() => {
     if (firstCard && secondCard) {
       if (firstCard.name === secondCard.name) {
-        console.log("It's a match.");
         if (currentPlayer === "Player 1") {
           setPlayerOnePoints((prev) => prev + 1);
         } else {
@@ -67,15 +68,19 @@ const App = () => {
           });
         });
         resetCardMatching();
-        currentPlayer === "Player 1"
-          ? setCurrentPlayer("Player 2")
-          : setCurrentPlayer("Player 1");
+        togglePlayer();
       } else {
-        console.log(`${firstCard.name} and ${secondCard.name} don't match.`);
         setTimeout(resetCardMatching, 2500);
+        setTimeout(togglePlayer, 2500);
       }
     }
   }, [firstCard, secondCard]);
+
+  function togglePlayer() {
+    currentPlayer === "Player 1"
+      ? setCurrentPlayer("Player 2")
+      : setCurrentPlayer("Player 1");
+  }
 
   function resetCardMatching() {
     setFirstCard(null);
@@ -87,29 +92,16 @@ const App = () => {
     return Math.ceil(Math.random() * 151);
   }
 
-  // For debugging
-  // if (finalList.length === 12) {
-  //   for (let obj of finalList) {
-  //     console.log(
-  //       `Pokemon: ${obj.name}
-  //       Matched: ${obj.matched}
-  //       ID: ${obj.id}`
-  //     );
-  //   }
-  // }
-
   return (
     <div className="w-screen h-screen bg-lime-600">
       <h1 className="text-white bg-red-600 text-center text-4xl font-bold p-2">
         Pokemon Memory
       </h1>
-      <div className="rounded border-2 border-white border-solid p-2 w-11/12 mx-auto my-2 flex flex-col text-white justify-center items-center">
-        <p className="text-3xl">{currentPlayer}'s Turn</p>
-        <div className="flex flex-row justify-between gap-8 text-2xl">
-          <p>Player 1: {playerOnePoints} </p>
-          <p>Player 2: {playerTwoPoints}</p>
-        </div>
-      </div>
+      <ScoreBoard
+        currentPlayer={currentPlayer}
+        playerOnePoints={playerOnePoints}
+        playerTwoPoints={playerTwoPoints}
+      />
       <div className="rounded border-2 border-white border-solid p-2 w-11/12 mx-auto my-2 flex flex-row flex-wrap">
         {finalList.map((card) => {
           return (
@@ -130,9 +122,7 @@ const App = () => {
         })}
       </div>
       <TurnCounter turns={turns} />
-      {/* <div className="rounded border-2 border-white border-solid p-2 w-11/12 mx-auto my-2">
-        <p className="text-white text-center text-3xl">Turn {turns}</p>
-      </div> */}
+      <NewGame />
     </div>
   );
 };
