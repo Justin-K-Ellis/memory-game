@@ -1,7 +1,6 @@
 import pokeball from "/src/assets/pokeball_small.jpeg";
 
 const Card = (props) => {
-  // console.log("First card:", props.firstCard);
   function handleClick() {
     props.handleChoice(props.card);
   }
