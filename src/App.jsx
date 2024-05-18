@@ -110,8 +110,8 @@ const App = () => {
   }
 
   return (
-    <div className="w-screen h-screen lg:h-full bg-lime-500">
-      <h1 className="text-white bg-red-600 text-center text-4xl font-bold p-2">
+    <div className="w-screen h-screen lg:h-full bg-gradient-to-r from-lime-400 to-lime-500">
+      <h1 className="text-white bg-gradient-to-r from-red-500 to-red-600 text-center text-4xl font-bold p-2">
         Pokemon Memory
       </h1>
       <ScoreBoard
@@ -119,7 +119,7 @@ const App = () => {
         playerOnePoints={playerOnePoints}
         playerTwoPoints={playerTwoPoints}
       />
-      <div className="rounded border-2 border-white border-solid p-2 lg:px-14 w-11/12 lg:w-8/12 mx-auto my-2 flex flex-row flex-wrap bg-lime-600 shadow-md">
+      <div className="rounded border-2 border-white border-solid p-2 lg:px-14 w-11/12 lg:w-8/12 mx-auto my-2 flex flex-row flex-wrap bg-gradient-to-r from-lime-600 to-lime-700 shadow-md">
         {finalList.map((card) => {
           return (
             <Card
